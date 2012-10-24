@@ -35,6 +35,8 @@ $(function(){
 
 		$('#title').text(site.GetDomainName());
 
+		if($('section.span8 .input-append').find('button').size() > 0 ) return;
+
 		$('section.span8 .input-append').append($('<button class="btn" id="copy-title" type="button">Copy</button>'));
 
 		site._ZClipThis($('section.span8 .input-append button'))
