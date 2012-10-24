@@ -1,6 +1,6 @@
 SEOP ISA Keyword Mapper
 =======================
 
-Beta Release
+Under development XD
 ------------
 
