@@ -1,4 +1,3 @@
-
 var meny = Meny.create({
 
   // The element that will be animated in from off screen
@@ -8,7 +7,7 @@ var meny = Meny.create({
   contentsElement: document.querySelector( '#main' ),
 
   // The alignment of the menu (top/right/bottom/left)
-  position: 'top',
+  position: 'left',
 
   // The height of the menu (when using top/bottom position)
   height: 250,
@@ -35,17 +34,21 @@ $(function(){
 
 		$('#title').text(site.GetDomainName());
 
-		if($('section.span8 .input-append').find('button').size() > 0 ) {
-
-			$('section.span8 .input-append').find('button').removeClass('btn-success').text('Copy');
-			return;
-		}
-
-		$('section.span8 .input-append').append($('<button class="btn" id="copy-title" type="button">Copy</button>'));
-
-		site._ZClipThis($('section.span8 .input-append button'))
+		site.ResetFields();
 		
-	})
+	});
+
+	$('.operations').children('.btn-group').children('a').click(function(){
+
+		var resultText = site.TransformKeywords($(this), site.GetKeywords());
+		
+		site.ResetFields();
+				
+		$(this).addClass('btn-success').children().addClass('icon-white');
+		
+		$('#keywords-result').text(resultText);
+
+	});
 
 });
 
@@ -58,13 +61,38 @@ var SiteFunctions = function() {
 
 SiteFunctions.prototype = {
 
+	ResetFields : function(){
+
+		$('.operations').css({display : 'inline-block'})
+										.find('a').removeClass('active').removeClass('btn-success')
+										.find('i').removeClass('icon-white');
+
+		// If copy button is already initiated before.
+		// 
+		if($('section.span8 .input-append').find('button').size() > 0 ) {
+
+			$('section.span8 .input-append').find('button').removeClass('btn-success').text('Copy');
+
+			return;
+
+		}
+
+		// If no Copy button found.
+		// 
+		$('section.span8 .input-append').append($('<button class="btn" id="copy-title" type="button">Copy</button>'));
+
+		// Call ZClipThis
+		// 
+		this._ZClipThis($('section.span8 .input-append button'));
+	},
+
 	GetDomainName : function(){
 
 		var keywords = this.Keywords.split(/\n/);
 
 		var str = keywords[0] + (keywords[1] ? ' | ' + keywords[1] : '');
 		
-		str = this._StringToUpperCase(str);
+		str = this._StringToCapitalize(str);
 
 		return str + ' | ' + this.DomainName;
 
@@ -85,11 +113,28 @@ SiteFunctions.prototype = {
 		  	continue;
 		  }
 
-		  texts += $.trim(items[i]) + ',';
+		  texts += i != 0 ? ',' : '';
+
+		  texts += $.trim(items[i]);
 
 		}
 
 		return texts;
+	},
+
+	TransformKeywords : function($ele, keywords){
+
+		if($ele.hasClass('to-upper')){
+			return this._StringToUpperCase(keywords);
+		}
+
+		if($ele.hasClass('to-lower')){
+			return this._StringToLowerCase(keywords);
+		}
+
+		// If return-default button is pressed
+		return this.GetKeywords();
+
 	},
 
 	_ZClipThis : function($ele){
@@ -108,13 +153,20 @@ SiteFunctions.prototype = {
 	},
 
 
-	_StringToUpperCase : function(str){
+	_StringToCapitalize : function(str){
 
-		var stuc = str.toLowerCase().replace(/\b[a-z]/g, function(letter){
+		return str.toLowerCase().replace(/\b[a-z]/g, function(letter){
 				return letter.toUpperCase();
 		});
 
-		return stuc;
+	},
+
+	_StringToLowerCase : function(str){
+		return str.toLowerCase();
+	},
+
+	_StringToUpperCase : function(str){
+		return str.toUpperCase();
 	}
 
 }
