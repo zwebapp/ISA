@@ -11,7 +11,7 @@ var meny = Meny.create({
   position: 'top',
 
   // The height of the menu (when using top/bottom position)
-  height: 200,
+  height: 250,
 
   // The width of the menu (when using left/right position)
   width: 260
@@ -35,7 +35,11 @@ $(function(){
 
 		$('#title').text(site.GetDomainName());
 
-		if($('section.span8 .input-append').find('button').size() > 0 ) return;
+		if($('section.span8 .input-append').find('button').size() > 0 ) {
+
+			$('section.span8 .input-append').find('button').removeClass('btn-success').text('Copy');
+			return;
+		}
 
 		$('section.span8 .input-append').append($('<button class="btn" id="copy-title" type="button">Copy</button>'));
 
