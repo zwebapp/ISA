@@ -4,9 +4,6 @@
    Author's custom styles
    ========================================================================== */
 
-
-
-
 body{ background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2NkYGD4D8SMQAwGcAY2AbBKDBUAVuYCBQPd34sAAAAASUVORK5CYII=") repeat scroll 0 0 #222222;  margin: 0;padding: 0;}
 header { color: #FFFFFF; padding: 0 20px;}
 
@@ -15,3 +12,5 @@ header { color: #FFFFFF; padding: 0 20px;}
 .wrapper { padding: 20px; }
 
 .span8 .operations{display: none; text-align: right;}
+
+.noty_text p:last-child { margin-bottom:  0;}

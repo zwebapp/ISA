@@ -10,8 +10,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
@@ -28,9 +28,10 @@
       <small>soon . . . .</small>
       <ul>
         <li><del>Copy to Clipboard</del></li>
-        <li>Lowercase keywords</li>
-        <li>Uppercase keywords</li>
-        <li>Description Field</li>
+        <li><del>Lowercase keywords</del></li>
+        <li><del>Uppercase keywords</del></li>
+        <li><del>Information Tooltip</del></li>
+        <li><del>Empty Fields Validation</del></li>
         <li>HTML String Builder</li>
         <li>Link Wheel (?)</li>
       </ul>
@@ -47,16 +48,16 @@
 
             <aside class="span4">
 
-              <label> Website </label>
+              <label> Website*: </label>
               
               <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span><input type="text" name="website" id="website" class="input-xlarge"/>
+                <span class="add-on"><i class="icon-globe"></i></span><input type="text" name="website" id="website" rel="tooltip" title="Input your Website URL here. <br/> Example format: YourWebsite.com" class="input-xlarge"/>
               </div>
               
-              <label>Keywords</label>
+              <label>Keywords*:</label>
               
               <div class="input-prepend">
-                <span class="add-on"><i class="icon-tags"></i></span><textarea name="keywords" class="input-xlarge" id="keywords"></textarea>
+                <span class="add-on"><i class="icon-tags"></i></span><textarea name="keywords" class="input-xlarge" id="keywords" rel="tooltip" title="Input your keywords here. Place each keyword in new line."></textarea>
               </div>
               
               <a href="#" id="submit-form" class="btn btn-primary btn-large"><i class="icon-fire"></i> Let's get it on! </a>
@@ -79,9 +80,9 @@
                 <div class="operations form-inline span4 offset4"> 
                   <span class="label label-inverse">Operations:</span>
                   <div class="btn-group" data-toggle="buttons-radio">
-                    <a href="javascript:void(0)" class="btn btn-mini to-upper" title="To Uppercase"><i class="icon-upload"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-mini to-lower" title="To Lowercase"><i class="icon-download"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-mini return-default" title="Return to Default"><i class="icon-repeat"></i></a>
+                    <a href="javascript:void(0)" rel="tooltip" class="btn btn-mini to-upper" title="To Uppercase"><i class="icon-upload"></i></a>
+                    <a href="javascript:void(0)" rel="tooltip" class="btn btn-mini to-lower" title="To Lowercase"><i class="icon-download"></i></a>
+                    <a href="javascript:void(0)" rel="tooltip" class="btn btn-mini return-default" title="Return to Default"><i class="icon-repeat"></i></a>
                   </div>   
                 </div>
               </div>

@@ -15,7 +15,13 @@ var meny = Meny.create({
   // The width of the menu (when using left/right position)
   width: 260
 
-})
+});
+
+$('.operations').find('a').tooltip();
+
+$('.input-prepend').find('input, textarea').tooltip({
+	'trigger' : 'focus'
+});
 
 /**
  * Functions for the ISA scripts
@@ -30,13 +36,28 @@ $(function(){
 		site.DomainName = $('#website').val();
 		site.Keywords = $('#keywords').val();
 
+		$.noty.closeAll();
+		
+		var isError = site.ValidateFirst();
+
+		if(isError){
+
+			noty({
+				text 		: isError,
+				type 		: 'warning',
+				layout 	: 'topCenter'
+			});
+
+			return false;
+		}
+
 		$('#keywords-result').text(site.GetKeywords());
 
 		$('#title').text(site.GetDomainName());
 
 		site.ResetFields();
 		
-	});
+	}); 
 
 	$('.operations').children('.btn-group').children('a').click(function(){
 
@@ -60,6 +81,21 @@ var SiteFunctions = function() {
 }
 
 SiteFunctions.prototype = {
+
+	ValidateFirst : function(){
+		var invalidInput 			= '';
+		var noDomainMessage 	= '<p><strong>Website</strong> field is empty, try again.</p>';
+		var noKeywordsMessage = '<p><strong>No Keywords</strong>? That\'s important man.</p>';
+		var noBothMessage 		= '<p><strong>Website</strong> and <strong>Keywords</strong> fields are empty!</p><p> You don\'t want to receive an unsual result <br/> <strong>AREN\'T YAH</strong>?</p>';
+
+		if(this.Keywords && this.DomainName) return false;
+		
+		if(!this.DomainName && !this.Keywords) return noBothMessage;
+
+		if(!this.DomainName && this.Keywords) return noDomainMessage;
+
+		return noKeywordsMessage;
+	},
 
 	ResetFields : function(){
 
