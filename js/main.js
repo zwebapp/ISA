@@ -103,7 +103,7 @@ SiteFunctions.prototype = {
 										.find('a').removeClass('active').removeClass('btn-success')
 										.find('i').removeClass('icon-white');
 
-		// If copy button is already initiated before.
+		// If copy button wass already initiated.
 		// 
 		if($('section.span8 .input-append').find('button').size() > 0 ) {
 
@@ -145,7 +145,7 @@ SiteFunctions.prototype = {
 		  if (!/\S/.test(items[i])) continue;
 
 		  if(i == items.length - 1) {
-		  	texts += $.trim(items[i]);
+		  	texts += ',' + $.trim(items[i]);
 		  	continue;
 		  }
 
